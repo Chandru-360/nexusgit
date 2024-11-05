@@ -52,5 +52,5 @@ jobs:
       # env:
       #   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
       run: |
-        echo "admin" | docker login ${{ env.DOCKER_REGISTRY }} -u admin --password-stdin || { echo "Docker login failed"; exit 1; }
+        docker login ${{ env.DOCKER_REGISTRY }} -u admin --password admin ||
         docker push ${{ env.DOCKER_REGISTRY }}/repository/test/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
