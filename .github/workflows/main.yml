@@ -11,7 +11,7 @@ jobs:
 
     env:
       MAVEN_HOME: /opt/maven
-      DOCKER_REGISTRY: http://18.118.36.159:8082
+      DOCKER_REGISTRY: 18.118.36.159:8082
       DOCKER_IMAGE: my-app
 
     steps:
