@@ -11,7 +11,7 @@ jobs:
 
     env:
       MAVEN_HOME: /opt/maven
-      #DOCKER_REGISTRY: 18.118.36.159:9002
+      #DOCKER_REGISTRY: 18.216.88.91:9002
       DOCKER_IMAGE: my-app
 
     steps:
@@ -46,11 +46,11 @@ jobs:
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
     - name: Build Docker Image
-      run: docker build -t 18.118.36.159:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest .
+      run: docker build -t 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest .
 
     - name: Docker Login & Push to Nexus
       # env:
       #   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
       run: |
-        docker login 18.118.36.159:9002 -u admin --password admin ||
-        docker push 18.118.36.159:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
+        docker login 18.216.88.91:9002 -u admin --password admin ||
+        docker push 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
