@@ -49,7 +49,7 @@ jobs:
       run: docker build -t 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest .
 
     - name: Log in to Nexus
-      run: echo ${{ secrets.NEXUS_PASSWORD }} | docker login -u ${{ secrets.NEXUS_USERNAME }} --password-stdin 18.216.88.91:9002
+      run: echo ${{ secrets.NEXUS_PASSWORD }} | docker login -u ${{ secrets.NEXUS_USERNAME }} --password-stdin http://18.216.88.91:9002
 
     # - name: Docker Login & Push to Nexus
     #   # env:
