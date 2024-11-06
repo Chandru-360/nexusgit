@@ -48,15 +48,12 @@ jobs:
     - name: Build Docker Image
       run: docker build -t 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest .
 
-    - name: Check network connectivity
-      run: ping -c 4 18.216.88.91
+    - name: Log in to Nexus
+      run: echo ${{ secrets.NEXUS_PASSWORD }} | docker login -u ${{ secrets.NEXUS_USERNAME }} --password-stdin 18.216.88.91:9002
 
-    - name: Test Docker registry access
-      run: curl -v https://18.216.88.91:9002/v2/
-
-    - name: Docker Login & Push to Nexus
-      # env:
-      #   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-      run: |
-        docker login 18.216.88.91:9002 -u admin --password admin ||
-        docker push 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
+    # - name: Docker Login & Push to Nexus
+    #   # env:
+    #   #   NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+    #   run: |
+    #     docker login 18.216.88.91:9002 -u admin --password admin ||
+    #     docker push 18.216.88.91:9002/repository/gitactions/${{ env.DOCKER_IMAGE }}:latest || { echo "Docker push failed"; exit 1; }
